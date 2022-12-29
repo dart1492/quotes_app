@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quotes_app/src/controllers/quotes_list_controller.dart';
 import 'package:quotes_app/src/pages/main_page.dart/widgets/quote_card.dart';
+import 'package:quotes_app/src/shared/loader.dart';
 
 class QuotesListView extends StatefulWidget {
   const QuotesListView({
@@ -20,20 +21,25 @@ class _QuotesListViewState extends State<QuotesListView> {
     return SizedBox(
       width: MediaQuery.of(context).size.width / 5,
       child: GetX<QuotesListController>(builder: (controller) {
-        return ListView.separated(
-          padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
-          shrinkWrap: true,
-          itemCount: controller.currentQuotes.length,
-          scrollDirection: Axis.vertical,
-          separatorBuilder: (context, index) {
-            return const SizedBox(height: 40);
-          },
-          itemBuilder: ((context, index) {
-            return QuoteCard(
-              quote: controller.currentQuotes[index],
-            );
-          }),
-        );
+        if (controller.currentQuotes.isNotEmpty) {
+          return ListView.separated(
+            padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+            shrinkWrap: true,
+            itemCount: controller.currentQuotes.length,
+            scrollDirection: Axis.vertical,
+            separatorBuilder: (context, index) {
+              return const SizedBox(height: 40);
+            },
+            itemBuilder: ((context, index) {
+              // print(controller.currentQuotes[index]);
+              return QuoteCard(
+                quote: controller.currentQuotes[index],
+              );
+            }),
+          );
+        } else {
+          return const Loader();
+        }
       }),
     );
   }

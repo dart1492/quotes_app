@@ -6,6 +6,7 @@ class Quote {
   });
   String? author;
   String? quoteText;
+  String? uniqueID;
   int? rating;
 
   Map<String, dynamic> toJson() {
@@ -13,6 +14,7 @@ class Quote {
       'author': author,
       'quoteText': quoteText,
       'rating': rating,
+      'uniqueID': uniqueID,
     };
   }
 
@@ -20,5 +22,11 @@ class Quote {
     author = jsonMap['author'];
     quoteText = jsonMap['quoteText'];
     rating = jsonMap['rating'];
+    uniqueID = jsonMap['uniqueID'];
+  }
+
+  @override
+  String toString() {
+    return "Author: $author\nQuoteText: $quoteText\nRating: $rating\n ID: $uniqueID";
   }
 }

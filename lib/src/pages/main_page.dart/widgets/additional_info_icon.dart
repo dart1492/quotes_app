@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_smart_dialog/flutter_smart_dialog.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AddInfoIcon extends StatefulWidget {
   const AddInfoIcon({
@@ -40,17 +41,25 @@ class _AddInfoIconState extends State<AddInfoIcon> {
 
   @override
   Widget build(BuildContext context) {
-    return MouseRegion(
-      onEnter: (event) async {
-        await attachAddInfoDialog(context, Alignment.bottomCenter);
+    return GestureDetector(
+      onTap: () {
+        launchUrl(
+          Uri.parse('https://github.com/dart1492'),
+        );
       },
-      onExit: (event) async {
-        await SmartDialog.dismiss();
-      },
-      child: Container(
-        padding: const EdgeInsets.all(30),
-        child: Image.asset(
-          'assets/parfenon_icon.png',
+      child: MouseRegion(
+        cursor: SystemMouseCursors.click,
+        onEnter: (event) async {
+          await attachAddInfoDialog(context, Alignment.bottomCenter);
+        },
+        onExit: (event) async {
+          await SmartDialog.dismiss();
+        },
+        child: Container(
+          padding: const EdgeInsets.all(30),
+          child: Image.asset(
+            'assets/parfenon_icon.png',
+          ),
         ),
       ),
     );

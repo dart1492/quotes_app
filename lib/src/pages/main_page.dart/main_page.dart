@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quotes_app/src/pages/main_page.dart/widgets/add_info_icon.dart';
+import 'package:quotes_app/src/pages/main_page.dart/widgets/additional_info_icon.dart';
 import 'package:quotes_app/src/pages/main_page.dart/widgets/quote_create_button.dart';
 import 'widgets/quotes_list_view.dart';
 
@@ -33,7 +33,7 @@ class MainPage extends StatelessWidget {
               ),
               Expanded(
                 flex: 1,
-                child: PostButton(),
+                child: QuoteCreateButton(),
               ),
             ]),
       ),

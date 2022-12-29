@@ -8,22 +8,27 @@ class QuotesListController extends GetxController {
 
   @override
   onInit() {
+    currentQuotes.bindStream(_firestoreService.getQuotesStream());
     super.onInit();
-    loadQuotes();
+
+    // loadQuotes();
   }
 
-  Future<void> loadQuotes() async {
-    List<Quote> newQuotes = [];
-    await _firestoreService.getQuotesDocuments().then((value) {
-      for (var element in value.docChanges) {
-        newQuotes.add(Quote.fromJson(element.doc.data()!));
-      }
-    });
-    currentQuotes.value = newQuotes;
-  }
+  // Future<void> loadQuotes() async {
+  //   List<Quote> newQuotes = [];
+  //   await _firestoreService.getQuotesDocuments().then((value) {
+  //     for (var element in value.docChanges) {
+  //       newQuotes.add(Quote.fromJson(element.doc.data()!));
+  //     }
+  //   });
+  //   currentQuotes.value = newQuotes;
+  // }
 
   Future<void> addQuote(Quote newQuote) async {
     await _firestoreService.addQuote(newQuote.toJson());
-    loadQuotes();
+  }
+
+  Future<void> rateQuote(uniqueID, bool isLiked) async {
+    await _firestoreService.likeQuote(uniqueID, isLiked);
   }
 }

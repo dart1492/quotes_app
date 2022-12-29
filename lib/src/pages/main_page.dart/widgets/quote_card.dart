@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:quotes_app/models/quote.dart';
+import 'package:quotes_app/src/controllers/quotes_list_controller.dart';
 
 class QuoteCard extends StatefulWidget {
   const QuoteCard({
@@ -15,6 +17,7 @@ class QuoteCard extends StatefulWidget {
 class _QuoteCardState extends State<QuoteCard> {
   bool isLiked = false;
   String mainDisplayText = '';
+  final quotesListController = Get.find<QuotesListController>();
 
   @override
   void initState() {
@@ -37,7 +40,7 @@ class _QuoteCardState extends State<QuoteCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              mainDisplayText,
+              widget.quote.quoteText!, // mainDisplayText,
               style: Theme.of(context).textTheme.headline3,
             ),
             Row(
@@ -51,6 +54,8 @@ class _QuoteCardState extends State<QuoteCard> {
                       ? const Icon(Icons.star)
                       : const Icon(Icons.star_border_outlined),
                   onPressed: () {
+                    quotesListController.rateQuote(
+                        widget.quote.uniqueID, !isLiked);
                     setState(() {
                       isLiked = !isLiked;
                     });

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:quotes_app/models/quote.dart';
 
 class CloudFirestore {
   final _quotesCollection = FirebaseFirestore.instance.collection('quotes');
@@ -12,8 +13,35 @@ class CloudFirestore {
   }
 
   Future addQuote(Map<String, dynamic> quoteJsonParsed) async {
-    int lastIndex =
-        await _quotesCollection.get().then((value) => value.docs.length);
-    await _quotesCollection.doc(lastIndex.toString()).set(quoteJsonParsed);
+    var newDocID = _quotesCollection.doc().id;
+    quoteJsonParsed['uniqueID'] = newDocID;
+    await _quotesCollection.doc(newDocID).set(quoteJsonParsed);
+  }
+
+  Stream<List<Quote>> getQuotesStream() {
+    return _quotesCollection
+        .orderBy('rating', descending: true)
+        .snapshots()
+        .map(
+      (event) {
+        List<Quote> result = [];
+        for (var element in event.docs) {
+          result.add(Quote.fromJson(element.data()));
+        }
+        return result;
+      },
+    );
+  }
+
+  Future<void> likeQuote(String uniqueID, bool isLiked) async {
+    if (isLiked) {
+      await _quotesCollection
+          .doc(uniqueID)
+          .update({"rating": FieldValue.increment(1)});
+    } else {
+      await _quotesCollection
+          .doc(uniqueID)
+          .update({"rating": FieldValue.increment(-1)});
+    }
   }
 }

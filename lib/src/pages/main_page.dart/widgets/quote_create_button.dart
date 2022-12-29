@@ -1,26 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:quotes_app/src/pages/main_page.dart/widgets/quote_create_dialog.dart';
 
-class PostButton extends StatefulWidget {
+class PostButton extends StatelessWidget {
   const PostButton({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<PostButton> createState() => _PostButtonState();
-}
-
-class _PostButtonState extends State<PostButton> {
-  @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
-        QuoteCreateButton(),
-        // ReloadButton(),
-      ],
-    );
+    return const QuoteCreateButton();
   }
 }
 
@@ -98,38 +86,41 @@ class _QuoteCreateButtonState extends State<QuoteCreateButton>
         },
         child: Transform.scale(
           scale: _scale,
-          child: Container(
-            alignment: Alignment.center,
-            width: MediaQuery.of(context).size.width / 12,
-            height: 50,
-            decoration: BoxDecoration(
-              boxShadow: const [
-                BoxShadow(
-                  color: Color(0x80000000),
-                  blurRadius: 12.0,
-                  offset: Offset(0.0, 5.0),
-                ),
-              ],
-              borderRadius: BorderRadius.circular(100.0),
-              gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: isHovered
-                      ? [
-                          const Color.fromARGB(255, 25, 104, 130),
-                          const Color.fromARGB(255, 140, 85, 112),
-                        ]
-                      : [
-                          const Color(0xff33ccff),
-                          const Color(0xffff99cc),
-                        ]),
-            ),
-            child: Text(
-              "Post now!",
-              style: Theme.of(context)
-                  .textTheme
-                  .headline4!
-                  .copyWith(color: Colors.black),
+          child: Padding(
+            padding: const EdgeInsets.all(30),
+            child: Container(
+              alignment: Alignment.center,
+              width: MediaQuery.of(context).size.width / 12,
+              height: 50,
+              decoration: BoxDecoration(
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color(0x80000000),
+                    blurRadius: 12.0,
+                    offset: Offset(0.0, 5.0),
+                  ),
+                ],
+                borderRadius: BorderRadius.circular(100.0),
+                gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: isHovered
+                        ? [
+                            const Color.fromARGB(255, 25, 104, 130),
+                            const Color.fromARGB(255, 140, 85, 112),
+                          ]
+                        : [
+                            const Color(0xff33ccff),
+                            const Color(0xffff99cc),
+                          ]),
+              ),
+              child: Text(
+                "Post now!",
+                style: Theme.of(context)
+                    .textTheme
+                    .headline4!
+                    .copyWith(color: Colors.black),
+              ),
             ),
           ),
         ),

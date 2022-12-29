@@ -73,11 +73,21 @@ class QuoteCreateDialogState extends State<QuoteCreateDialog>
                       ),
                       Expanded(
                         flex: 5,
-                        child: TextFormField(
-                          controller: authorNameController,
-                          decoration: InputDecoration(
-                            hintText: "your name?",
-                            hintStyle: Theme.of(context).textTheme.headline5,
+                        child: Container(
+                          padding: const EdgeInsets.only(top: 6),
+                          child: TextFormField(
+                            cursorColor: Theme.of(context).primaryColorLight,
+                            style: Theme.of(context).textTheme.headline5,
+                            controller: authorNameController,
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                              enabledBorder: null,
+                              hintText: "your name to remember!",
+                              hintStyle: Theme.of(context)
+                                  .textTheme
+                                  .headline5!
+                                  .copyWith(color: Colors.blue),
+                            ),
                           ),
                         ),
                       )
@@ -87,12 +97,22 @@ class QuoteCreateDialogState extends State<QuoteCreateDialog>
                 Expanded(
                   flex: 6,
                   child: Container(
-                    color: Colors.amber,
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                    color: Theme.of(context).primaryColor,
                     child: TextFormField(
+                      maxLines: 5,
+                      cursorColor: Theme.of(context).primaryColorLight,
                       controller: quoteTextController,
+                      style: Theme.of(context).textTheme.headline4,
                       decoration: InputDecoration(
-                          hintText: "Your quote here!",
-                          hintStyle: Theme.of(context).textTheme.headline4),
+                        border: InputBorder.none,
+                        hintText: "Your quote to consider!",
+                        hintStyle: Theme.of(context)
+                            .textTheme
+                            .headline4!
+                            .copyWith(color: Colors.blue),
+                      ),
                     ),
                   ),
                 ),

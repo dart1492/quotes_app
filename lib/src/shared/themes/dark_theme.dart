@@ -23,6 +23,7 @@ ThemeData darkTheme = ThemeData(
   appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent),
   backgroundColor: AppColors.backgroundColor,
   primaryColor: AppColors.primaryColor,
+  primaryColorLight: AppColors.textColor,
   fontFamily: "HiMelody",
   textTheme: const TextTheme(
     headline2: TextStyle(fontSize: 96),

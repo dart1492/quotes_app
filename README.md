@@ -1,16 +1,16 @@
 # quotes_app
 
-A new Flutter project.
+A small quotes app (how innovative!), made with Flutter and some additional packages. Just a practice project, with potentially cool featurews to be added later.
 
-## Getting Started
+## Main features
+- #### Post quotes
+just write your name (or whatever word you want other people to associate you with) and quote, click Done -  and its done! 
+- #### Read quotes from other people. 
+All those 'quote cards' are stored in Firebase Firestore, the load time is almost 0 - everything goes as smooth as it is. 
 
-This project is a starting point for a Flutter application.
+## Used Packages
+This small project makes use of some additional libraries:
+- GetX for state managment;
+- Firebase - related libraries (to store the data);
+- Packages that provide usefull functionality - beautifully animated transitions, dialogs. All are stated in a pubspec.yaml file; 
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
