@@ -34,7 +34,7 @@ class _QuoteCardState extends State<QuoteCard> {
       color: Theme.of(context).backgroundColor,
       elevation: 0,
       child: ListTile(
-        title: Text(widget.quote.author ?? "null author",
+        title: Text(widget.quote.author ?? 'anonymous',
             style: Theme.of(context).textTheme.headline6),
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

@@ -21,6 +21,22 @@ ThemeData darkTheme = ThemeData(
     ),
   ),
   appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent),
+  inputDecorationTheme: const InputDecorationTheme(
+    border: UnderlineInputBorder(
+      borderSide: BorderSide(
+        color: AppColors.textColor,
+      ),
+    ),
+    focusedBorder: UnderlineInputBorder(
+      borderSide: BorderSide(
+        color: AppColors.textColor,
+      ),
+    ),
+    filled: true,
+    fillColor: AppColors.primaryColor,
+    hintStyle: TextStyle(fontSize: 36, color: AppColors.hintColor),
+    errorStyle: TextStyle(fontSize: 36, color: AppColors.errorTextColor),
+  ),
   backgroundColor: AppColors.backgroundColor,
   primaryColor: AppColors.primaryColor,
   primaryColorLight: AppColors.textColor,

@@ -5,6 +5,8 @@ import 'package:quotes_app/src/controllers/quotes_list_controller.dart';
 
 class QuoteCreateDialog extends StatefulWidget {
   const QuoteCreateDialog({super.key});
+  @override
+  Key? get key => const Key("QuoteCreateDialog");
 
   @override
   State<StatefulWidget> createState() => QuoteCreateDialogState();

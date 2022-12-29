@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quotes_app/src/controllers/quotes_list_controller.dart';
 import 'package:quotes_app/src/pages/main_page.dart/widgets/quote_card.dart';
-import 'package:quotes_app/src/shared/loader.dart';
 
 class QuotesListView extends StatefulWidget {
   const QuotesListView({
@@ -38,7 +37,10 @@ class _QuotesListViewState extends State<QuotesListView> {
             }),
           );
         } else {
-          return const Loader();
+          return Center(
+            child: Text("No quotes yet...",
+                style: Theme.of(context).textTheme.headline4),
+          );
         }
       }),
     );
