@@ -3,6 +3,7 @@ import 'package:quotes_app/models/quote.dart';
 
 class CloudFirestore {
   final _quotesCollection = FirebaseFirestore.instance.collection('quotes');
+  final _usersCollection = FirebaseFirestore.instance.collection('users');
 
   // Stream<QuerySnapshot<Map<String, dynamic>>> getQuotesDocuments() async* {
   //   yield* _quotesCollection.snapshots();
@@ -43,5 +44,9 @@ class CloudFirestore {
           .doc(uniqueID)
           .update({"rating": FieldValue.increment(-1)});
     }
+  }
+
+  Future<void> createUser(String uid) async {
+    await _usersCollection.doc(uid).set({});
   }
 }

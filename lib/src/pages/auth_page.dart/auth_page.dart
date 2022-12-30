@@ -39,6 +39,12 @@ class AuthPage extends StatelessWidget {
                   cursorHeight: 30,
                 ),
               ),
+
+              // BounceGradientButton(
+              //     childText: "Log in",
+              //     onButtonTap: () {
+              //       Navigator.pushNamed(context, '/main_page');
+              //     }),
               GradientHighlitedButton(
                   childText: "Log in",
                   onButtonTap: () {
