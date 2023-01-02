@@ -8,7 +8,7 @@ Just write your name (or whatever word you want other people to associate you wi
 - #### Read quotes from other people. 
 All those 'quote cards' are stored in Firebase Firestore, the load time is almost 0 - everything goes as smooth as it is. 
 - #### Animated dialogs and buttons.
-Just to spice up the designe.
+Just to spice up the design.
 
 ## Used packages
 This small project makes use of some additional libraries:
