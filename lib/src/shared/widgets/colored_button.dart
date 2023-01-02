@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:quotes_app/src/pages/main_page.dart/widgets/quote_create_dialog.dart';
 
-class QuoteCreateButton extends StatefulWidget {
-  const QuoteCreateButton({
+class GradientHighlitedButton extends StatefulWidget {
+  const GradientHighlitedButton({
     Key? key,
+    required this.childText,
+    required this.onButtonTap,
   }) : super(key: key);
+
+  final String childText;
+  final Function? onButtonTap;
   @override
   Key? get key => const Key("PostNowButton");
   @override
-  State<QuoteCreateButton> createState() => _QuoteCreateButtonState();
+  State<GradientHighlitedButton> createState() =>
+      _GradientHighlitedButtonState();
 }
 
-class _QuoteCreateButtonState extends State<QuoteCreateButton>
+class _GradientHighlitedButtonState extends State<GradientHighlitedButton>
     with SingleTickerProviderStateMixin {
   late double _scale;
   late AnimationController _controller;
@@ -45,14 +50,6 @@ class _QuoteCreateButtonState extends State<QuoteCreateButton>
     _controller.reverse();
   }
 
-  Future<void> _displayTextInputDialog(BuildContext context) async {
-    return showDialog(
-        context: context,
-        builder: (_) {
-          return const QuoteCreateDialog();
-        });
-  }
-
   @override
   Widget build(BuildContext context) {
     _scale = 1 - _controller.value;
@@ -72,7 +69,7 @@ class _QuoteCreateButtonState extends State<QuoteCreateButton>
         onTapDown: _tapDown,
         onTapUp: _tapUp,
         onTap: () {
-          _displayTextInputDialog(context);
+          widget.onButtonTap!();
         },
         child: Transform.scale(
           scale: _scale,
@@ -105,7 +102,7 @@ class _QuoteCreateButtonState extends State<QuoteCreateButton>
                           ]),
               ),
               child: Text(
-                "Post now!",
+                widget.childText,
                 style: Theme.of(context)
                     .textTheme
                     .headline4!
@@ -118,40 +115,3 @@ class _QuoteCreateButtonState extends State<QuoteCreateButton>
     );
   }
 }
-
-// SmartDialog.show(builder: (context) {
-  //               return Container(
-  //                 height: MediaQuery.of(context).size.height / 1.5,
-  //                 width: MediaQuery.of(context).size.width / 5,
-  //                 decoration: BoxDecoration(
-  //                   color: Theme.of(context).primaryColor,
-  //                   borderRadius: BorderRadius.circular(10),
-  //                 ),
-  //                 alignment: Alignment.center,
-  //                 child: Form(
-  //                   child: Column(
-  //                     children: [
-  //                       Container(
-  //                         height: 100,
-  //                         child: Row(
-  //                           children: [
-  //                             Container(
-  //                               padding: const EdgeInsets.fromLTRB(10, 5, 0, 0),
-  //                               child: Text("by:",
-  //                                   style:
-  //                                       Theme.of(context).textTheme.headline5),
-  //                             ),
-  //                             Container(
-  //                               height: 100,
-  //                               width: 100,
-  //                               alignment: Alignment.centerLeft,
-  //                               child: TextFormField(),
-  //                             ),
-  //                           ],
-  //                         ),
-  //                       )
-  //                     ],
-  //                   ),
-  //                 ),
-  //               );
-  //             });
