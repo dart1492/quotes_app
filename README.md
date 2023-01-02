@@ -1,7 +1,7 @@
 # quotes_app
 
 A small quotes app (how innovative!), made with Flutter and some additional packages. Just a practice project, with potentially cool featurews to be added later.
-#### This is still a row thing, and I plan to add some usefull functionality (like rating and sorting the quotes, tags, etc...) later!!!
+#### !!! This is still a row thing, and I plan to add some usefull functionality (like rating and sorting the quotes, tags, etc...) later.
 
 ## Main features
 - #### Post quotes
