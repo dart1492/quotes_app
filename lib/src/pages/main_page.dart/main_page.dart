@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:quotes_app/src/controllers/app_user_controller.dart';
+import 'package:quotes_app/src/controllers/auth_controller.dart';
+
 import 'package:quotes_app/src/pages/main_page.dart/widgets/additional_info_icon.dart';
+import 'package:get/get.dart';
 import 'package:quotes_app/src/pages/main_page.dart/widgets/quote_create_button.dart';
-import 'widgets/quotes_list_view.dart';
+import 'package:quotes_app/src/pages/main_page.dart/widgets/quotes_list_view.dart';
+import 'package:quotes_app/src/shared/loader.dart';
 
 class MainPage extends StatelessWidget {
-  const MainPage({super.key});
-
+  MainPage({super.key});
+  final controller = Get.put(AppUserController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,25 +22,56 @@ class MainPage extends StatelessWidget {
           style: Theme.of(context).textTheme.headline2,
         ),
         centerTitle: true,
-        actions: const [AddInfoIcon()],
+        actions: const [
+          AddInfoIcon(),
+        ],
+        leading: IconButton(
+          onPressed: () {
+            AuthController.instance.signOut();
+          },
+          icon: const Icon(Icons.arrow_back),
+        ),
       ),
-      body: Center(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: const [
-              SizedBox(
-                height: 50,
+      body: Column(
+        children: [
+          Expanded(
+            flex: 1,
+            child: FutureBuilder(
+              future: AuthController.instance.getUsername(),
+              builder: ((context, snapshot) {
+                if (snapshot.hasData) {
+                  return Container(
+                    padding: const EdgeInsets.fromLTRB(0, 30, 0, 0),
+                    child: Text("Authorised as: ${snapshot.data!}",
+                        style: Theme.of(context).textTheme.headline4),
+                  );
+                } else {
+                  return const Loader();
+                }
+              }),
+            ),
+          ),
+          Expanded(
+            flex: 8,
+            child: Center(
+              child: Column(
+                children: const [
+                  SizedBox(
+                    height: 50,
+                  ),
+                  Expanded(
+                    flex: 6,
+                    child: QuotesListView(),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: QuoteCreateButton(),
+                  ),
+                ],
               ),
-              Expanded(
-                flex: 6,
-                child: QuotesListView(),
-              ),
-              Expanded(
-                flex: 1,
-                child: QuoteCreateButton(),
-              ),
-            ]),
+            ),
+          ),
+        ],
       ),
     );
   }

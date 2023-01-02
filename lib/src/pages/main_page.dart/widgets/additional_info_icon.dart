@@ -30,7 +30,7 @@ class _AddInfoIconState extends State<AddInfoIcon> {
         child: Column(
           children: [
             Text("by: Dart", style: Theme.of(context).textTheme.headline5),
-            Text("Version: 0.0.1",
+            Text("Version: 0.0.2",
                 style: Theme.of(context).textTheme.headline5),
           ],
         ),
@@ -39,13 +39,18 @@ class _AddInfoIconState extends State<AddInfoIcon> {
     await Future.delayed(const Duration(milliseconds: 350));
   }
 
+  bool isRedirected = false;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
+      key: const Key("AdditionalInfoButton"),
       onTap: () {
         launchUrl(
           Uri.parse('https://github.com/dart1492'),
         );
+        setState(() {
+          isRedirected = true;
+        });
       },
       child: MouseRegion(
         cursor: SystemMouseCursors.click,
