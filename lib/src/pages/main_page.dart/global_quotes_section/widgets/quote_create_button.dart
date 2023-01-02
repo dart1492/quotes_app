@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quotes_app/src/pages/main_page.dart/widgets/quote_create_dialog.dart';
+import 'package:quotes_app/src/pages/main_page.dart/global_quotes_section/widgets/quote_create_dialog.dart';
 
 class QuoteCreateButton extends StatefulWidget {
   const QuoteCreateButton({

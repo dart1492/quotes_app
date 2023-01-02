@@ -1,9 +1,9 @@
 class AppUser {
   AppUser({
-    required this.email,
-    required this.username,
-    required this.uid,
-    required likedIDs,
+    this.email,
+    this.username,
+    this.uid,
+    likedIDs,
   });
   String? email;
   String? username;

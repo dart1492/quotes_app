@@ -22,6 +22,11 @@ ThemeData darkTheme = ThemeData(
   ),
   appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent),
   inputDecorationTheme: const InputDecorationTheme(
+    errorBorder: UnderlineInputBorder(
+      borderSide: BorderSide(
+        color: AppColors.hintColor,
+      ),
+    ),
     border: UnderlineInputBorder(
       borderSide: BorderSide(
         color: AppColors.textColor,
@@ -29,7 +34,7 @@ ThemeData darkTheme = ThemeData(
     ),
     focusedBorder: UnderlineInputBorder(
       borderSide: BorderSide(
-        color: AppColors.textColor,
+        color: AppColors.hintColor,
       ),
     ),
     filled: true,
@@ -40,6 +45,7 @@ ThemeData darkTheme = ThemeData(
   backgroundColor: AppColors.backgroundColor,
   primaryColor: AppColors.primaryColor,
   primaryColorLight: AppColors.textColor,
+  dividerColor: AppColors.hintColor,
   fontFamily: "HiMelody",
   textTheme: const TextTheme(
     headline2: TextStyle(fontSize: 96),

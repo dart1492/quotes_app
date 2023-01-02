@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:quotes_app/models/quote.dart';
 import 'package:quotes_app/services/firebase_services/cloud_firestore.dart';
+import 'package:quotes_app/src/controllers/auth_controller.dart';
 
 class QuotesListController extends GetxController {
   var currentQuotes = <Quote>[].obs;
@@ -29,6 +30,19 @@ class QuotesListController extends GetxController {
   }
 
   Future<void> rateQuote(uniqueID, bool isLiked) async {
-    await _firestoreService.likeQuote(uniqueID, isLiked);
+    await _firestoreService.manageLikedQuote(
+        uniqueID, isLiked, AuthController.instance.getUID());
+    await _firestoreService.likeGlobalQuote(uniqueID, isLiked);
+  }
+
+  Future<bool> checkQuoteRated(String uniqueID) async {
+    var list =
+        await _firestoreService.getLikedIDs(AuthController.instance.getUID());
+
+    if (list.contains(uniqueID)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

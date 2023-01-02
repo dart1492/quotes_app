@@ -30,7 +30,7 @@ class _AddInfoIconState extends State<AddInfoIcon> {
         child: Column(
           children: [
             Text("by: Dart", style: Theme.of(context).textTheme.headline5),
-            Text("Version: 0.0.1",
+            Text("Version: 0.0.2",
                 style: Theme.of(context).textTheme.headline5),
           ],
         ),
