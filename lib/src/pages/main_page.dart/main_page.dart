@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:quotes_app/src/controllers/app_user_controller.dart';
 import 'package:quotes_app/src/controllers/auth_controller.dart';
 
-import 'package:quotes_app/src/pages/main_page.dart/global_quotes_section/widgets/additional_info_icon.dart';
+import 'package:quotes_app/src/pages/main_page.dart/widgets/additional_info_icon.dart';
 import 'package:get/get.dart';
-import 'package:quotes_app/src/pages/main_page.dart/global_quotes_section/widgets/quote_create_button.dart';
-import 'package:quotes_app/src/pages/main_page.dart/global_quotes_section/widgets/quotes_list_view.dart';
+import 'package:quotes_app/src/pages/main_page.dart/widgets/quote_create_button.dart';
+import 'package:quotes_app/src/pages/main_page.dart/widgets/quotes_list_view.dart';
 import 'package:quotes_app/src/shared/loader.dart';
 
 class MainPage extends StatelessWidget {
@@ -64,7 +64,7 @@ class MainPage extends StatelessWidget {
                     child: QuotesListView(),
                   ),
                   Expanded(
-                    flex: 1,
+                    flex: 2,
                     child: QuoteCreateButton(),
                   ),
                 ],

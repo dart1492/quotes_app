@@ -36,21 +36,21 @@ class CloudFirestore {
 
   Future<void> likeGlobalQuote(String uniqueID, bool isLiked) async {
     if (isLiked) {
-      // await _quotesCollection
-      //     .doc(uniqueID)
-      //     .update({"rating": FieldValue.increment(1)});
-
-      await _quotesRatesCollection
+      await _quotesCollection
           .doc(uniqueID)
           .update({"rating": FieldValue.increment(1)});
-    } else {
-      // await _quotesCollection
-      //     .doc(uniqueID)
-      //     .update({"rating": FieldValue.increment(-1)});
 
-      await _quotesRatesCollection
+      // await _quotesRatesCollection
+      //     .doc(uniqueID)
+      //     .update({"rating": FieldValue.increment(1)});
+    } else {
+      await _quotesCollection
           .doc(uniqueID)
           .update({"rating": FieldValue.increment(-1)});
+
+      // await _quotesRatesCollection
+      //     .doc(uniqueID)
+      //     .update({"rating": FieldValue.increment(-1)});
     }
   }
 
