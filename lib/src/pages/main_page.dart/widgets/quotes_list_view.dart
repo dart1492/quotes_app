@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quotes_app/models/quote.dart';
-import 'package:quotes_app/services/firebase_services/cloud_firestore.dart';
+import 'package:quotes_app/src/controllers/quotes_filter_Controller.dart';
 import 'package:quotes_app/src/controllers/quotes_list_controller.dart';
 import 'package:quotes_app/src/pages/main_page.dart/widgets/quote_card.dart';
-import 'package:quotes_app/src/shared/loader.dart';
+import 'package:quotes_app/src/shared/widgets/adjusable_scroll.dart';
 
 class QuotesListView extends StatefulWidget {
   const QuotesListView({
@@ -16,9 +15,8 @@ class QuotesListView extends StatefulWidget {
 }
 
 class _QuotesListViewState extends State<QuotesListView> {
-  final quotesController = Get.put(QuotesListController());
-  final _cloudStore = CloudFirestore();
-
+  final quotesController = Get.find<QuotesListController>();
+  final quotesFilterController = Get.find<QuotesFilterController>();
   @override
   Widget build(BuildContext context) {
     print("rebuild");
@@ -28,6 +26,7 @@ class _QuotesListViewState extends State<QuotesListView> {
         builder: (controller) {
           if (controller.currentQuotes.isNotEmpty) {
             return ListView.separated(
+              controller: AdjustableScrollController(20),
               padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
               shrinkWrap: true,
               itemCount: controller.currentQuotes.length,

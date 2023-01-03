@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_use_of_protected_member
+
 import 'package:get/get.dart';
 import 'package:quotes_app/models/quote.dart';
 import 'package:quotes_app/services/firebase_services/cloud_firestore.dart';
@@ -5,11 +7,15 @@ import 'package:quotes_app/src/controllers/auth_controller.dart';
 
 class QuotesListController extends GetxController {
   var currentQuotes = <Quote>[].obs;
+
+  var fullQuotesText = <Quote>[].obs;
+
   final _firestoreService = CloudFirestore();
 
   @override
   onInit() {
     currentQuotes.bindStream(_firestoreService.getQuotesStream());
+    fullQuotesText.bindStream(_firestoreService.getQuotesStream());
     super.onInit();
 
     // loadQuotes();
@@ -44,5 +50,17 @@ class QuotesListController extends GetxController {
     } else {
       return false;
     }
+  }
+
+  /// Function which shortens the controlled list that every
+  ///  elements quoteText will match searchedText parameter
+  void filterQuotes(String searchedText) {
+    currentQuotes.value = fullQuotesText.value;
+    print(fullQuotesText);
+    List<Quote> newList = currentQuotes.value.where((element) {
+      return element.quoteText!.contains(searchedText);
+    }).toList();
+
+    currentQuotes.value = newList;
   }
 }

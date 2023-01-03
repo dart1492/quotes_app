@@ -44,7 +44,7 @@ class QuoteCreateDialogState extends State<QuoteCreateDialog>
 
   @override
   Widget build(BuildContext context) {
-    double height = MediaQuery.of(context).size.height / 3;
+    double height = MediaQuery.of(context).size.height / 2;
     double width = MediaQuery.of(context).size.width / 6;
 
     return FutureBuilder(

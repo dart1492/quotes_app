@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:quotes_app/models/quote.dart';
 import 'package:quotes_app/services/firebase_services/cloud_firestore.dart';
 import 'package:quotes_app/src/controllers/quotes_list_controller.dart';
-import 'package:quotes_app/src/shared/loader.dart';
+import 'package:quotes_app/src/pages/main_page.dart/widgets/full_quote_dialog.dart';
 
 class QuoteCard extends StatefulWidget {
   const QuoteCard({
@@ -31,9 +31,27 @@ class _QuoteCardState extends State<QuoteCard> {
   //   super.initState();
   // }
 
+  String _cutQuoteText() {
+    String cardText = widget.quote.quoteText!;
+    if (cardText.length > 14) {
+      return "${cardText.substring(0, 14)}...";
+    } else {
+      return cardText;
+    }
+  }
+
+  Future<void> _displayFullQuote(BuildContext context, String quoteText) async {
+    return showDialog(
+        context: context,
+        builder: (_) {
+          return FullQuoteDialog(fullQuote: quoteText);
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     print("rebuild quote card");
+
     return Card(
       color: Theme.of(context).backgroundColor,
       elevation: 0,
@@ -44,7 +62,7 @@ class _QuoteCardState extends State<QuoteCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              widget.quote.quoteText!, // mainDisplayText,
+              _cutQuoteText(), // mainDisplayText,
               style: Theme.of(context).textTheme.headline3,
             ),
             // FutureBuilder<Object>(
@@ -91,7 +109,9 @@ class _QuoteCardState extends State<QuoteCard> {
           ],
         ),
         tileColor: Theme.of(context).listTileTheme.tileColor,
-        onTap: () {},
+        onTap: () {
+          _displayFullQuote(context, widget.quote.quoteText!);
+        },
       ),
     );
   }

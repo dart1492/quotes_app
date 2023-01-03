@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'package:quotes_app/models/quote.dart';
 
 class CloudFirestore {
@@ -27,7 +28,9 @@ class CloudFirestore {
       (event) {
         List<Quote> result = [];
         for (var element in event.docs) {
-          result.add(Quote.fromJson(element.data()));
+          var newQuote = Quote.fromJson(element.data());
+
+          result.add(newQuote);
         }
         return result;
       },
